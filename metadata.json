@@ -1,0 +1,9 @@
+{
+  "name": "QuantBet Pro Terminal",
+  "description": "High-frequency sports betting analytics terminal powered by Gemini AI, featuring real-time odds, risk management, and predictive modeling.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
