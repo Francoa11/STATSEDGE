@@ -27,11 +27,8 @@ export const Dock: React.FC = () => {
     };
 
     const screens = [
-        { id: Screen.ValueBetPro, icon: 'candlestick_chart', label: 'ValueBet Pro' },
-        { id: Screen.ProAnalyst, icon: 'query_stats', label: 'Analista Pro' },
-        { id: Screen.GoldPick, icon: 'psychology', label: 'Selección Gold' },
-        { id: Screen.Syndicate, icon: 'groups', label: 'Sindicato' },
-        { id: Screen.RiskManager, icon: 'shield', label: 'Gestor de Riesgo' },
+        { id: Screen.ValueBetPro, icon: 'terminal', label: 'Terminal' },
+        { id: Screen.GoldPick, icon: 'stars', label: 'Gold Pick' }, // Keep separate for specific highlight
     ];
 
     return (

@@ -1,0 +1,243 @@
+[
+    {
+        "match": "Feyenoord vs Sturm Graz",
+        "league_name": "UEFA Europa League",
+        "match_time": "14:45",
+        "selection": "Feyenoord - Gana y +1.5 goles",
+        "odds": 1.62,
+        "model_probability": 68.5,
+        "market_implied_probability": 61.7,
+        "edge_detected": true,
+        "verdict": "Feyenoord necesita cortar su racha de 6 partidos sin ganar. Sturm Graz viene de un caótico 4-4 ante Copenhague, demostrando graves problemas defensivos que los locales aprovecharán.",
+        "key_stats": {
+            "stat_1": "Sturm Graz ha recibido 8 goles en sus últimos 3 partidos (Promedio 2.6 p/p).",
+            "stat_2": "Feyenoord no ha mantenido su valla invicta en los últimos 6 juegos.",
+            "weather": "Nublado 9°C"
+        },
+        "risk_assessment": {
+            "volatility": "Media",
+            "recommended_stake": "1.5 units"
+        },
+        "key_insights": [
+            "Sturm Graz permite muchos remates (15.3 por partido en UEL).",
+            "Urgencia local por sumar de a tres."
+        ]
+    },
+    {
+        "match": "Rangers vs Ludogorets",
+        "league_name": "UEFA Europa League",
+        "match_time": "17:00",
+        "selection": "Victoria Rangers (1)",
+        "odds": 1.48,
+        "is_gold": true,
+        "model_probability": 78.0,
+        "market_implied_probability": 67.6,
+        "edge_detected": true,
+        "verdict": "Ibrox Park es un factor diferencial enorme. Rangers se transforma de local en noches europeas. Ludogorets históricamente baja mucho su rendimiento cuando viaja al Reino Unido.",
+        "key_stats": {
+            "stat_1": "Ludogorets ha recibido 22 goles en 9 partidos europeos.",
+            "stat_2": "Rangers ha ganado 5 de sus últimos 6 de local en Europa.",
+            "weather": "Lluvia 6°C"
+        },
+        "risk_assessment": {
+            "volatility": "Baja",
+            "recommended_stake": "2 units"
+        },
+        "key_insights": [
+            "Defensa visitante extremadamente frágil.",
+            "Factor Ibrox determinante."
+        ]
+    },
+    {
+        "match": "Fenerbahçe vs Aston Villa",
+        "league_name": "UEFA Europa League",
+        "match_time": "14:45",
+        "selection": "Ambos Equipos Anotan (SÍ)",
+        "odds": 1.58,
+        "model_probability": 63.0,
+        "market_implied_probability": 63.3,
+        "edge_detected": false,
+        "verdict": "El mercado ya ajustó la cuota, pero sigue siendo la opción más lógica. Fenerbahçe tiene un 48% de probabilidad de ganar según modelos ELO, pero Villa ha marcado en el 90% de sus juegos de grupo.",
+        "key_stats": {
+            "stat_1": "Probabilidad calculada de BTTS: 63.06% (Datos reales SportsMole).",
+            "stat_2": "Villa promedia 1.8 goles a favor como visitante.",
+            "weather": "Despejado 12°C"
+        },
+        "risk_assessment": {
+            "volatility": "Baja",
+            "recommended_stake": "2 units"
+        },
+        "key_insights": [
+            "Fenerbahçe fuerte en casa (48% win prob).",
+            "Villa suele conceder en segundas partes."
+        ]
+    },
+    {
+        "match": "Viktoria Plzeň vs Porto",
+        "league_name": "UEFA Europa League",
+        "match_time": "14:45",
+        "selection": "Victoria Porto (2)",
+        "odds": 1.95,
+        "model_probability": 58.0,
+        "market_implied_probability": 51.3,
+        "edge_detected": true,
+        "verdict": "El valor está en el Porto. Llevan 9 victorias consecutivas en todas las competiciones y Plzeň no ha marcado en sus últimos 3 partidos de fase de liga. La defensa de Porto es un muro ahora mismo.",
+        "key_stats": {
+            "stat_1": "Porto lleva 5 vallas invictas consecutivas.",
+            "stat_2": "Plzeň tiene un promedio de gol de 0.0 en sus últimos 3 juegos UEL.",
+            "weather": "Nublado 3°C"
+        },
+        "risk_assessment": {
+            "volatility": "Media",
+            "recommended_stake": "1.5 units"
+        },
+        "key_insights": [
+            "Porto ganó sus últimas 3 visitas por 1-0.",
+            "Plzeň con opciones limitadas en ataque."
+        ]
+    },
+    {
+        "match": "Bologna vs Celtic",
+        "league_name": "UEFA Europa League",
+        "match_time": "14:45",
+        "selection": "Celtic o Empate (X2)",
+        "odds": 1.90,
+        "model_probability": 55.0,
+        "market_implied_probability": 52.6,
+        "edge_detected": true,
+        "verdict": "El mercado sobrevalora al Bologna. Celtic viene de ganar 3 partidos seguidos con un global de 7-0. Bologna solo ha ganado 1 de sus últimos 9 partidos. El valor está en los escoceses.",
+        "key_stats": {
+            "stat_1": "Celtic: 3 victorias consecutivas sin recibir gol.",
+            "stat_2": "Bologna: 1 victoria en los últimos 9 encuentros.",
+            "weather": "Niebla 6°C"
+        },
+        "risk_assessment": {
+            "volatility": "Alta",
+            "recommended_stake": "1 unit"
+        },
+        "key_insights": [
+            "Celtic en racha ascendente clara.",
+            "Bologna con crisis de resultados."
+        ]
+    },
+    {
+        "match": "Malmö vs Crvena zvezda",
+        "league_name": "UEFA Europa League",
+        "match_time": "14:45",
+        "selection": "Doble Oportunidad (X2)",
+        "odds": 1.55,
+        "model_probability": 68.0,
+        "market_implied_probability": 64.5,
+        "edge_detected": true,
+        "verdict": "Malmö está fuera de ritmo competitivo (invierno sueco), no juega oficial desde hace semanas. Estrella Roja es líder en su liga y tiene mejor ranking ELO actual (84 vs 84 pero con tendencia positiva).",
+        "key_stats": {
+            "stat_1": "Malmö no tiene partidos oficiales recientes (Parón de liga).",
+            "stat_2": "Crvena zvezda invicto en sus últimos 5 juegos.",
+            "weather": "Frío -2°C"
+        },
+        "risk_assessment": {
+            "volatility": "Baja",
+            "recommended_stake": "1.5 units"
+        },
+        "key_insights": [
+            "Diferencia de rodaje físico clave.",
+            "Estrella Roja sólido visitante."
+        ]
+    },
+    {
+        "match": "RB Salzburg vs Basel",
+        "league_name": "UEFA Europa League",
+        "match_time": "17:00",
+        "selection": "Más de 2.5 goles (Over)",
+        "odds": 1.60,
+        "model_probability": 72.0,
+        "market_implied_probability": 62.5,
+        "edge_detected": true,
+        "verdict": "Estadística pura: Basel ha marcado en sus últimas 5 visitas consecutivas. Salzburg necesita ganar y su defensa concede casi 2 goles por partido en Europa. Escenario ideal para goles.",
+        "key_stats": {
+            "stat_1": "Basel anotó en 100% de sus últimos 5 partidos de visita.",
+            "stat_2": "Salzburg promedia 3.1 goles totales en sus partidos.",
+            "weather": "Nieve ligera -1°C"
+        },
+        "risk_assessment": {
+            "volatility": "Baja",
+            "recommended_stake": "2 units"
+        },
+        "key_insights": [
+            "Ambos equipos necesitan los 3 puntos.",
+            "Defensas vulnerables en transición."
+        ]
+    },
+    {
+        "match": "Roma vs Stuttgart",
+        "league_name": "UEFA Europa League",
+        "match_time": "17:00",
+        "selection": "Ambos Equipos Anotan (SÍ)",
+        "odds": 1.70,
+        "model_probability": 65.0,
+        "market_implied_probability": 58.8,
+        "edge_detected": true,
+        "verdict": "Stuttgart es una máquina de consistencia ofensiva: ha marcado en 15 partidos consecutivos. Roma es favorita (2.02) pero recibió gol en 4 de sus últimos 5. El BTTS paga mejor que el ganador.",
+        "key_stats": {
+            "stat_1": "Stuttgart: racha de 15 partidos seguidos anotando.",
+            "stat_2": "Roma ha encajado gol en el 80% de sus últimos 5 juegos.",
+            "weather": "Lluvia 10°C"
+        },
+        "risk_assessment": {
+            "volatility": "Media",
+            "recommended_stake": "1.5 units"
+        },
+        "key_insights": [
+            "Stuttgart ofensivo de visitante (ganó 4 de últimos 5 fuera).",
+            "Roma fuerte arriba pero débil atrás."
+        ]
+    },
+    {
+        "match": "PAOK vs Real Betis",
+        "league_name": "UEFA Europa League",
+        "match_time": "14:45",
+        "selection": "Empate o Betis (X2)",
+        "odds": 1.50,
+        "model_probability": 60.0,
+        "market_implied_probability": 66.6,
+        "edge_detected": false,
+        "verdict": "Partido muy cerrado. Las probabilidades dan a PAOK un 48% de ganar, pero Betis es el rey del empate (50% de sus juegos). Preferimos cubrir el empate dada la igualdad de fuerzas.",
+        "key_stats": {
+            "stat_1": "Betis ha empatado 3 de sus 6 partidos de grupo.",
+            "stat_2": "PAOK tiene un 48% de probabilidad de victoria según modelos.",
+            "weather": "Despejado 14°C"
+        },
+        "risk_assessment": {
+            "volatility": "Alta",
+            "recommended_stake": "0.5 units"
+        },
+        "key_insights": [
+            "Partido con tendencia clara al empate.",
+            "Betis difícil de batir (pocas derrotas)."
+        ]
+    },
+    {
+        "match": "Freiburg vs Maccabi Tel-Aviv",
+        "league_name": "UEFA Europa League",
+        "match_time": "14:45",
+        "selection": "Freiburg - Hándicap Asiático (-1.0)",
+        "odds": 1.65,
+        "model_probability": 70.0,
+        "market_implied_probability": 60.6,
+        "edge_detected": true,
+        "verdict": "Freiburg tiene un 57.3% de probabilidad de ganar directo. En casa son muy fuertes (vencieron a Hamburgo recientemente). Maccabi es inferior en ranking ELO (177º vs 68º de Freiburg).",
+        "key_stats": {
+            "stat_1": "Freiburg Ranking ELO: 68º mundial.",
+            "stat_2": "Maccabi Ranking ELO: 177º mundial.",
+            "weather": "Nublado 6°C"
+        },
+        "risk_assessment": {
+            "volatility": "Baja",
+            "recommended_stake": "1.5 units"
+        },
+        "key_insights": [
+            "Diferencia de calidad enorme (Bundesliga vs Israel).",
+            "Freiburg sólido en casa."
+        ]
+    }
+]

@@ -42,22 +42,63 @@ class GeminiAgentService:
             "sources": ["BBC Sport", "Sitio Oficial Club"]
         }
 
-    def generate_insight_narrative(self, match_id: str, edge: float, news_context: str) -> str:
+    def generate_insight_narrative(self, match: str, odds: float, model_probability: float, market_probability: float, stats: dict = None) -> str:
         """
-        Uses Gemini 1.5 Pro to generate a 'Thinking' narrative explaining the edge.
+        Generates a narrative following the V1.0 'Probabilidad Lógica' structure.
         """
-        prompt = f"""
-        Act as a Sports Quantitative Analyst.
-        Generate a short, technical justification for a bet on Match {match_id}.
-        Data:
-        - Model Edge: {edge*100:.1f}% positive value.
-        - News Context: {news_context}
+        if stats is None: stats = {}
         
-        Explain why this edge exists. Use terms like 'Market inefficiency', 'Overreaction', 'Key Player Variance'.
-        Keep it under 50 words.
+        # 1. ACTUAL PROMPT (Gemini)
+        prompt = f"""
+        Act as 'Stats Edge Quant Engine'.
+        Goal: Explain the value of this bet using the 'Probabilidad Lógica' framework.
+        
+        IMPORTANT: Only analyze the specific match provided below. Do not invent/hallucinate teams or matches.
+        
+        Match: {match}
+        Selection Odds: {odds}
+        
+        Using the input stats, act as a professional analyst and generate these 4 specific sections (Keep it brief, professional, no hype):
+        
+        1. 💎 JERARQUÍA Y FORMA: Recent form, xG trends, or team ranking.
+        2. ⚔️ CONTEXTO DEL RIVAL: Opponent weaknesses or leaks.
+        3. 🚨 DATO DE SEGURIDAD: Safety factor (home advantage, key player back, etc).
+        4. 🧠 ESCENARIO TÁCTICO: Expected game flow (dominance vs counter).
+        
+        Language: Spanish (Professional/Technical).
         """
-        # Simulated Generation
-        return f"Modelo detecta ineficiencia significativa de mercado en {match_id}. Mientras el sentimiento público reacciona a la forma reciente, nuestro escaneo de noticias confirma '{news_context}', sugiriendo que las líneas no se han ajustado para esta varianza clave. Valor {edge*100:.1f}% verificado."
+
+        # 2. SIMULATED RESONSE (Mock for Demo)
+        import json
+        
+        h_xg = stats.get('home_xg_last_5', '1.8')
+        a_xg = stats.get('away_xg_last_5', '1.1')
+        poss = stats.get('possession_avg', '55')
+        
+        # We construct a formatted text for the UI
+        narrative = (
+            f"💎 JERARQUÍA Y FORMA\n"
+            f"El equipo local promedia {h_xg} xG en sus últimas 5 presentaciones, mostrando una eficiencia superior a la media de la liga.\n\n"
+            
+            f"⚔️ CONTEXTO DEL RIVAL\n"
+            f"El visitante concede {a_xg} xG por partido y ha mostrado fragilidad defensiva en transiciones rápidas.\n\n"
+            
+            f"🚨 DATO DE SEGURIDAD\n"
+            f"La cuota {odds} cubre la varianza implícita, y el retorno de piezas clave en el mediocampo refuerza la estabilidad.\n\n"
+            
+            f"🧠 ESCENARIO TÁCTICO\n"
+            f"Se proyecta un partido de dominio posicional ({poss}% est.) donde la presión alta forzará errores en salida."
+        )
+        
+        return json.dumps({
+            "analysis_text": narrative,
+            "structured": {
+                "hierarchy": f"Local promedia {h_xg} xG (últimos 5).",
+                "rival": f"Visitante concede {a_xg} xG/partido.",
+                "safety": "Retorno de titulares en mediocampo.",
+                "tactical": f"Dominio posicional estimado del {poss}%."
+            }
+        }, ensure_ascii=False)
 
     def analyze_bet_image(self, image_bytes: bytes) -> Dict[str, Any]:
         """

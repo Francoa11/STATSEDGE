@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background-dark text-text-main font-display antialiased;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-surface-dark bg-opacity-80 backdrop-blur-md border border-surface-border;
+  }
+
+  .text-shadow-neon {
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+  }
+
+  .shadow-glow-sm {
+    box-shadow: 0 0 8px rgba(57, 255, 20, 0.15);
+  }
+
+  /* Custom Scrollbar for 'Bloomberg Terminal' feel */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    @apply bg-background-dark;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-surface-border rounded;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-dim;
+  }
+}
+
+/* Animations */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Helper Class for Slide In Animations (mimicking tailwindcss-animate) */
+.animate-in {
+  animation-duration: 300ms;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-in-from-bottom {
+  animation-name: slideInFromBottom;
+}
+
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-from-bottom-5 {
+  animation-name: slideInFromBottom5;
+}
+
+@keyframes slideInFromBottom5 {
+  from {
+    transform: translateY(5%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation-name: fadeIn;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

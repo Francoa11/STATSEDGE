@@ -14,6 +14,24 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onS
     const [proMethod, setProMethod] = useState<PaymentMethod>('mercadopago');
     const [activeSlide, setActiveSlide] = useState(0);
 
+    const scrollRef = React.useRef<HTMLDivElement>(null);
+
+    React.useEffect(() => {
+        if (isOpen && scrollRef.current) {
+            // Scroll to the second slide (Pro Plan) on open
+            // Short timeout to allow layout to settle
+            setTimeout(() => {
+                if (scrollRef.current) {
+                    const width = scrollRef.current.offsetWidth;
+                    // Pro plan is the 2nd item, roughly at 1 * width (depending on gaps)
+                    // Assuming centered snap, but scrolling ensures it's in view
+                    // Cards are min-w-[85vw].
+                    scrollRef.current.scrollTo({ left: width * 0.85, behavior: 'smooth' });
+                }
+            }, 100);
+        }
+    }, [isOpen]);
+
     const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
         const scrollLeft = e.currentTarget.scrollLeft;
         const width = e.currentTarget.offsetWidth;
@@ -26,9 +44,17 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onS
 
     const getPrice = (type: 'pick' | 'pro', method: PaymentMethod) => {
         const isARS = method === 'mercadopago';
-        if (type === 'pick') return isARS ? { amount: 18500, label: '$18.500 ARS', currency: 'ARS' } : { amount: 14.99, label: '$14.99 USD', currency: 'USD' };
+        const isCrypto = method === 'crypto';
+
+        if (type === 'pick') {
+            if (isARS) return { amount: 18500, label: '$18.500 ARS', currency: 'ARS' };
+            if (isCrypto) return { amount: 13.49, label: '$13.49 USDT', currency: 'USD' }; // ~10% Discount
+            return { amount: 14.99, label: '$14.99 USD', currency: 'USD' };
+        }
         // Pro
-        return isARS ? { amount: 30000, label: '$30.000 ARS', currency: 'ARS' } : { amount: 19.99, label: '$19.99 USD', currency: 'USD' };
+        if (isARS) return { amount: 30000, label: '$30.000 ARS', currency: 'ARS' };
+        if (isCrypto) return { amount: 17.99, label: '$17.99 USDT', currency: 'USD' }; // ~10% Discount
+        return { amount: 19.99, label: '$19.99 USD', currency: 'USD' };
     };
 
     const handlePurchase = async (tier: string, method: PaymentMethod) => {
@@ -71,7 +97,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onS
             case 'mercadopago': return 'Precio en Pesos (Argentina)';
             case 'stripe': return 'Precio en Dólares (Internacional)';
             case 'paypal': return 'Precio en Dólares (Internacional)';
-            case 'crypto': return 'Pago Global (USDT)';
+            case 'crypto': return 'Pago Global (USDT) • 10% OFF';
             default: return 'Selecciona un método';
         }
     };
@@ -87,8 +113,8 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onS
                     className={`h-12 rounded border flex items-center justify-center gap-1.5 transition-all ${selected === 'mercadopago' ? `bg-blue-500/20 border-blue-500 text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.2)]` : 'border-white/10 text-text-muted hover:bg-white/5'}`}
                     title="Mercado Pago"
                 >
-                    <img src="https://img.icons8.com/color/48/mercadopago.png" alt="MP" className="w-5 h-5 object-contain" />
-                    <span className="text-[9px] font-bold uppercase">M.Pago</span>
+                    <span className="material-symbols-outlined text-lg">qr_code_2</span>
+                    <span className="text-[9px] font-bold uppercase">MERCADO PAGO</span>
                 </button>
                 <button
                     onClick={() => onSelect('stripe')}
@@ -132,6 +158,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onS
                 </div>
 
                 <div
+                    ref={scrollRef}
                     className="flex flex-row overflow-x-auto snap-x snap-mandatory gap-4 md:gap-6 w-full pb-6 md:pb-0 md:grid md:grid-cols-3 scrollbar-hide"
                     onScroll={handleScroll}
                 >
@@ -171,10 +198,11 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onS
 
                         <ul className="space-y-3 mb-6 flex-1 overflow-y-auto scrollbar-hide max-h-[180px] md:max-h-[220px]">
                             <li className="text-[10px] md:text-[11px] text-white flex gap-2 items-start"><span className="text-primary font-bold mt-0.5">✓</span> <span><strong>Acceso Multideporte Total</strong>: Fútbol, Tenis, Básquet y más.</span></li>
-                            <li className="text-[10px] md:text-[11px] text-white flex gap-2 items-start"><span className="text-primary font-bold mt-0.5">✓</span> <span><strong>Terminal de Inteligencia IA</strong>: Informes ilimitados de Gemini + xG.</span></li>
-                            <li className="text-[10px] md:text-[11px] text-white flex gap-2 items-start"><span className="text-primary font-bold mt-0.5">✓</span> <span><strong>Scanner de Edge</strong>: Detección auto de ventaja matemática.</span></li>
-                            <li className="text-[10px] md:text-[11px] text-white flex gap-2 items-start"><span className="text-primary font-bold mt-0.5">✓</span> <span><strong>Calculadora Kelly</strong>: Gestión de riesgo profesional.</span></li>
-                            <li className="text-[10px] md:text-[11px] text-white flex gap-2 items-start"><span className="text-primary font-bold mt-0.5">✓</span> <span><strong>Alertas Instantáneas</strong>: Movimientos de mercado en vivo.</span></li>
+                            <li className="text-[10px] md:text-[11px] text-white flex gap-2 items-start"><span className="text-primary font-bold mt-0.5">✓</span> <span><strong>Scanner de Edge</strong>: Detección de cuotas mal ajustadas por las casas (Value Bets).</span></li>
+                            <li className="text-[10px] md:text-[11px] text-white flex gap-2 items-start"><span className="text-primary font-bold mt-0.5">✓</span> <span><strong>Modelos de IA Predictiva</strong>: Acceso ilimitado al análisis profundo de IA + xG Data.</span></li>
+                            <li className="text-[10px] md:text-[11px] text-white flex gap-2 items-start"><span className="text-primary font-bold mt-0.5">✓</span> <span><strong>Rastreo de "Smart Money"</strong>: Alertas cuando el volumen de apuestas mueve el mercado drásticamente.</span></li>
+                            <li className="text-[10px] md:text-[11px] text-white flex gap-2 items-start"><span className="text-primary font-bold mt-0.5">✓</span> <span><strong>Picks de Alto Valor (High Edge)</strong>: Recibe solo las oportunidades con &gt;5% de ventaja matemática.</span></li>
+                            <li className="text-[10px] md:text-[11px] text-white flex gap-2 items-start"><span className="text-primary font-bold mt-0.5">✓</span> <span><strong>Análisis de IA en Tiempo Real</strong>: Explicación detallada de por qué apostar (Lesiones, Clima, Racha).</span></li>
                             <li className="text-[10px] md:text-[11px] text-white flex gap-2 items-start"><span className="text-primary font-bold mt-0.5">✓</span> <span><strong>Experiencia Pro</strong>: Sin anuncios y máxima velocidad.</span></li>
                         </ul>
 
@@ -209,7 +237,6 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onS
                         <div className="mb-4">
                             <div className="flex justify-between text-[10px] text-gray-400 font-mono mb-1">
                                 <span>Cupos Limitados</span>
-                                <span className="text-[#FFD700]">42/50 Vendidos</span>
                             </div>
                             <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
                                 <div className="h-full bg-gradient-to-r from-orange-500 to-red-500 w-[84%] shadow-[0_0_10px_rgba(255,69,0,0.5)]"></div>
@@ -220,7 +247,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onS
                             <ul className="space-y-3 mb-6">
                                 <li className="text-[10px] md:text-[11px] text-gray-300 flex gap-2 items-start"><span className="text-[#FFD700] font-bold mt-0.5">✓</span> <span><strong>Algoritmo 88%+</strong>: Predicción con mayor índice de confianza del día.</span></li>
                                 <li className="text-[10px] md:text-[11px] text-gray-300 flex gap-2 items-start"><span className="text-[#FFD700] font-bold mt-0.5">✓</span> <span><strong>Informe Confidencial IA</strong>: Explicación técnica "Sale o Sale".</span></li>
-                                <li className="text-[10px] md:text-[11px] text-gray-300 flex gap-2 items-start"><span className="text-[#FFD700] font-bold mt-0.5">✓</span> <span><strong>Protección de Varianza</strong>: Seguro de Stake incluido.</span></li>
+                                <li className="text-[10px] md:text-[11px] text-gray-300 flex gap-2 items-start"><span className="text-[#FFD700] font-bold mt-0.5">✓</span> <span><strong>Protección de Varianza</strong>: Seguro incluido. En caso de fallar, el pick del día siguiente lo tenés gratis.</span></li>
                                 <li className="text-[10px] md:text-[11px] text-gray-300 flex gap-2 items-start"><span className="text-[#FFD700] font-bold mt-0.5">✓</span> <span><strong>Smart Money Tracking</strong>: Alineación Pro.</span></li>
                             </ul>
                         </div>

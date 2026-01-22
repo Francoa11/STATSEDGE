@@ -1,0 +1,43 @@
+Starting script...
+CRITICAL ERROR: Traceback (most recent call last):
+  File "C:\statsedge_terminal\backend\statsedge_daily_agent.py", line 12, in <module>
+    from dotenv import load_dotenv
+ModuleNotFoundError: No module named 'dotenv'
+
+Starting script...
+Imported load_dotenv
+load_dotenv result: True
+ODDS_API_KEY: 128133df6f81ea2caf0164b8db49c112
+Imported requests
+Imported internal modules
+Initialized services
+📡 Obteniendo cuotas reales (The Odds API)...
+Found 34 matches from https://api.the-odds-api.com/v4/sports/soccer_uefa_champs_league/odds
+Found 9 matches from https://api.the-odds-api.com/v4/sports/soccer_mexico_ligamx/odds
+Found 20 matches from https://api.the-odds-api.com/v4/sports/soccer_spain_la_liga/odds
+🔍 Analizando 63 partidos...
+✅ Pick cargado: Villarreal vs Ajax | Edge 7.0%
+✅ Pick cargado: Inter Milan vs Arsenal | Edge 7.0%
+✅ Pick cargado: Sporting Lisbon vs Paris Saint Germain | Edge 7.0%
+✅ Pick cargado: Olympiakos Piraeus vs Bayer Leverkusen | Edge 7.0%
+✅ Pick cargado: FC Copenhagen vs Napoli | Edge 7.0%
+✅ Pick cargado: Galatasaray vs Atlético Madrid | Edge 7.0%
+🚀 Proceso diario completado.
+Starting script...
+Imported load_dotenv
+load_dotenv result: True
+ODDS_API_KEY: 128133df6f81ea2caf0164b8db49c112
+Imported requests
+Imported internal modules
+Initialized services
+📡 Obteniendo cuotas reales (The Odds API)...
+Found 34 matches from https://api.the-odds-api.com/v4/sports/soccer_uefa_champs_league/odds
+Found 9 matches from https://api.the-odds-api.com/v4/sports/soccer_mexico_ligamx/odds
+Found 20 matches from https://api.the-odds-api.com/v4/sports/soccer_spain_la_liga/odds
+🔍 Analizando 63 partidos...
+✅ Pick cargado: Villarreal vs Ajax | Edge 7.0%
+✅ Pick cargado: Inter Milan vs Arsenal | Edge 7.0%
+✅ Pick cargado: Sporting Lisbon vs Paris Saint Germain | Edge 7.0%
+✅ Pick cargado: FC Copenhagen vs Napoli | Edge 7.0%
+✅ Pick cargado: Galatasaray vs Atlético Madrid | Edge 7.0%
+🚀 Proceso diario completado.

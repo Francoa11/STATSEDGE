@@ -1,0 +1,16 @@
+
+    // Market Icons Map
+    const marketIcons: Record<string, string> = {
+        'shots_on_target': '⚽',
+        'cards': '🟨',
+        'corners': '🚩',
+        'goals': '🥅',
+        'player_tackles': 'tg',
+        'player_passes': 'p',
+        '1X2': '🏆',
+        'Over/Under Goals': '⚽',
+        'Both Teams To Score': '🥅',
+        'Corners': '🚩',
+        'Cards': '🟨',
+        'Shots on Target': '🎯'
+    };

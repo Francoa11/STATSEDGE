@@ -5,7 +5,14 @@ export enum Screen {
   ProAnalyst = '/analyst',
   GoldPick = '/goldpick',
   Syndicate = '/syndicate',
-  RiskManager = '/risk'
+  RiskManager = '/risk',
+  About = '/about',
+  Careers = '/careers',
+  Contact = '/contact',
+  Affiliates = '/affiliates',
+  Terms = '/terms',
+  Privacy = '/privacy',
+  Responsible = '/responsible-gaming'
 }
 
 export interface ChatMessage {

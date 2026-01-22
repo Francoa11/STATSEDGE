@@ -23,86 +23,110 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#3fff14",
-                        "primary-dim": "#2bba0e",
-                        "background-light": "#f9fafb",
-                        "background-dark": "#121810",
-                        "surface-dark": "#182016",
-                        "surface-border": "#2a3a27",
-                        "text-muted": "#a0bc9a",
-                        "danger": "#ff4d4d",
-                        "warning": "#ffa600",
-                        "card-dark": "#181e25",
-                        "border-dark": "#2a333c",
-                        "text-secondary": "#94a3b8"
+                        // 🎨 New Strict Palette
+                        bg: '#070B14',
+                        panel: '#0D1626',
+                        card: '#0F1B2E',
+                        edge: '#22E38A',     // Main Success/Green
+                        edgeSoft: '#6EE7B7', // Secondary Green
+                        text: '#E5E7EB',
+                        muted: '#9CA3AF',
+                        badge: '#1C2A44',    // League Chips
+                        amber: '#FBBF24',
+
+                        // 🔄 Compatibility Aliases
+                        "primary": "#22E38A",      // Mapped to edge
+                        "primary-dim": "#19C37D",
+                        "secondary": "#06B6D4",    // Cyan (kept for borders if needed)
+                        "background-dark": "#070B14", // Mapped to bg
+                        "surface-dark": "#0D1626",    // Mapped to panel
+                        "surface-border": "#1E293B",
+                        "text-main": "#E5E7EB",       // Mapped to text
+                        "text-muted": "#9CA3AF",      // Mapped to muted
+                        "danger": "#EF4444",
+                        "warning": "#FBBF24",
+                        "success": "#22E38A",
                     },
                     fontFamily: {
                         "display": ["Inter", "sans-serif"],
                         "mono": ["Roboto Mono", "monospace"]
                     },
-                    borderRadius: { "DEFAULT": "0.25rem", "sm": "0.125rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
                     boxShadow: {
-                        "glow": "0 0 10px rgba(63, 255, 20, 0.15)",
+                        "glow": "0 0 15px rgba(57, 255, 20, 0.2)",
+                        "card": "0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.16)",
+                    },
+                    animation: {
+                        "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
                     }
                 },
             },
         }
     </script>
 
-    <!-- Shared Styles -->
+    <!-- Custom Utilities (Tailwind CDN) -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .glass-panel {
+                @apply bg-surface-dark/80 backdrop-blur-md border border-surface-border;
+            }
+            
+            .text-shadow-neon {
+                text-shadow: 0 0 10px rgba(59, 255, 20, 0.5);
+            }
+
+            .text-glow-edge {
+                text-shadow: 0 0 6px rgba(34,227,138,0.35);
+            }
+            
+            .shadow-glow-sm {
+                box-shadow: 0 0 8px rgba(59, 255, 20, 0.15);
+            }
+
+            /* Custom Scrollbars */
+            .scrollbar-thin::-webkit-scrollbar {
+                width: 6px;
+                height: 6px;
+            }
+            .scrollbar-thin::-webkit-scrollbar-track {
+                @apply bg-background-dark;
+            }
+            .scrollbar-thin::-webkit-scrollbar-thumb {
+                @apply bg-surface-border rounded;
+            }
+            .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+                @apply bg-primary-dim;
+            }
+            
+            /* Animations */
+            .animate-marquee {
+                display: flex;
+                white-space: nowrap;
+                animation: marquee 30s linear infinite;
+            }
+            
+            @keyframes marquee {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+            }
+        }
+    </style>
+
+    <!-- Standard CSS Overrides -->
     <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
 
-        /* Custom scrollbar for terminal feel */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #121810;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #2a3a27;
-            border-radius: 3px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #3fff14;
-        }
-
-        .blur-fade-bottom {
-            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-        }
-
-        .neon-glow {
-            box-shadow: 0 0 10px rgba(63, 255, 20, 0.15);
-        }
-
-        .neon-text-glow {
-            text-shadow: 0 0 10px rgba(63, 255, 20, 0.3);
-        }
-
-        .glass-blur {
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-
-        /* Mask Linear for Ticker */
-        .mask-linear {
-            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        body {
+            background-color: #050A14;
+            /* Fallback */
         }
 
         /* Nav Link Active State Helper */
         .nav-link-active {
-            color: #3fff14 !important;
-            background-color: rgba(63, 255, 20, 0.1);
-            border-color: rgba(63, 255, 20, 0.3);
+            color: #39FF14 !important;
+            background-color: rgba(57, 255, 20, 0.1);
+            border-color: rgba(57, 255, 20, 0.3);
         }
     </style>
     <script type="importmap">
