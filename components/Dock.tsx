@@ -23,7 +23,7 @@ export const Dock: React.FC = () => {
 
     const handleLogout = async () => {
         await supabase.auth.signOut();
-        navigate(Screen.Auth);
+        navigate(Screen.Landing);
     };
 
     const screens = [

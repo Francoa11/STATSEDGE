@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { supabase } from '../services/supabaseClient';
 import { useNavigate } from 'react-router-dom';
+import { Screen } from '../types';
 
 export const AuthScreen: React.FC = () => {
     const [isLogin, setIsLogin] = useState(true);
@@ -23,7 +24,7 @@ export const AuthScreen: React.FC = () => {
                     password,
                 });
                 if (error) throw error;
-                navigate('/');
+                navigate(Screen.ValueBetPro);
             } else {
                 const { data, error } = await supabase.auth.signUp({
                     email,
@@ -47,7 +48,7 @@ export const AuthScreen: React.FC = () => {
                         }
                     ]);
                 }
-                navigate('/');
+                navigate(Screen.ValueBetPro);
             }
         } catch (err: any) {
             let msg = err.message;

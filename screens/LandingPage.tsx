@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Screen } from '../types';
+import { supabase } from '../services/supabaseClient';
 
 export const LandingPage: React.FC = () => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Redirect to App if logged in
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            if (session?.user) {
+                navigate(Screen.ValueBetPro);
+            }
+        });
+    }, [navigate]);
     const [openFaq, setOpenFaq] = useState<number | null>(null);
 
     const toggleFaq = (index: number) => {

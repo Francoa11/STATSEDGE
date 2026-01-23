@@ -158,7 +158,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onS
                 </button>
 
                 <div className="text-center mb-6 md:mb-8 shrink-0 relative z-10 w-full pr-12 md:pr-0 pl-12 md:pl-0">
-                    <h2 className="text-xl md:text-3xl font-black text-white tracking-tighter">TERMINAL DE ACCESO</h2>
+                    <h2 className="text-xl md:text-3xl font-black text-white tracking-tighter">PLANES PRO & GOLD PICKS</h2>
                     <div className="h-1 w-16 md:w-24 bg-primary mx-auto mt-2 md:mt-3 rounded-full shadow-[0_0_15px_#3fff14]"></div>
                 </div>
 
@@ -228,11 +228,11 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onS
 
                     {/* OPTION 3: GOLDPICK (ORDER 3 - LAST) */}
                     <div className="min-w-[85vw] md:min-w-0 snap-center border border-[#FFD700]/30 bg-surface-dark/40 rounded-xl p-5 md:p-6 flex flex-col relative group hover:border-[#FFD700]/50 transition-all order-3 md:order-3 ring-1 ring-[#FFD700]/20 shadow-[0_0_20px_rgba(255,215,0,0.05)]">
-                        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#FFD700] text-black text-[10px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider shadow-lg whitespace-nowrap z-20">
+                        <div className="absolute top-[-12px] left-1/2 transform -translate-x-1/2 bg-[#FFD700] text-black text-[10px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider shadow-lg whitespace-nowrap z-50 border-2 border-[#151a21]">
                             🔥 Más Vendido Hoy
                         </div>
 
-                        <div className="mb-4 mt-2">
+                        <div className="mb-4 mt-4">
                             <h3 className="text-sm md:text-base font-bold text-[#FFD700] uppercase tracking-widest mb-1">Acceso Unitario</h3>
                             <div className="text-xl md:text-2xl font-bold text-white mb-1">GoldPick™</div>
                             <div className="text-xs md:text-sm font-mono text-text-muted">Desbloquea solo este partido</div>
