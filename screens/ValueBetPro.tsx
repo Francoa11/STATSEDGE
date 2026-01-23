@@ -434,7 +434,7 @@ export const ValueBetPro: React.FC = () => {
             <PaymentModal
                 isOpen={showPaymentModal}
                 onClose={() => setShowPaymentModal(false)}
-                onSuccess={(tier) => {
+                onSuccess={() => {
                     setShowSuccess(true);
                     // "Cualquiera... al pagar... tienen el acceso total" -> Grant PRO for demo satisfaction
                     setProfile(prev => prev ? { ...prev, subscription_status: 'pro' } : { user_id: 'demo', subscription_status: 'pro', purchased_picks: [] });

@@ -227,8 +227,7 @@ export const GoldPick: React.FC = () => {
             <PaymentModal
                 isOpen={showPaymentModal}
                 onClose={() => setShowPaymentModal(false)}
-                initialTier="pick"
-                onSuccess={(tier) => {
+                onSuccess={() => {
                     setShowSuccess(true);
                     setUnlocked(true);
                 }}

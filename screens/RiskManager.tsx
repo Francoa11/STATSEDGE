@@ -123,7 +123,7 @@ export const RiskManager: React.FC = () => {
             <PaymentModal
                 isOpen={showPaymentModal}
                 onClose={() => setShowPaymentModal(false)}
-                onSuccess={(tier) => setUserTier(tier)}
+                onSuccess={() => setUserTier('elite')}
             />
 
             {/* Deep Reasoning Overlay Modal */}
