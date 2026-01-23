@@ -4,11 +4,12 @@ interface PaymentModalProps {
     isOpen: boolean;
     onClose: () => void;
     onSuccess: (tier: string) => void;
+    initialTier?: 'pro' | 'pick';
 }
 
 type PaymentMethod = 'stripe' | 'mercadopago' | 'paypal' | 'crypto';
 
-export const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onSuccess }) => {
+export const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onSuccess, initialTier = 'pro' }) => {
     const [processing, setProcessing] = useState<string | null>(null);
     const [pickMethod, setPickMethod] = useState<PaymentMethod>('mercadopago');
     const [proMethod, setProMethod] = useState<PaymentMethod>('mercadopago');
@@ -18,19 +19,23 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onS
 
     React.useEffect(() => {
         if (isOpen && scrollRef.current) {
-            // Scroll to the second slide (Pro Plan) on open
-            // Short timeout to allow layout to settle
+            // Scroll to the target slide on open
             setTimeout(() => {
                 if (scrollRef.current) {
                     const width = scrollRef.current.offsetWidth;
-                    // Pro plan is the 2nd item, roughly at 1 * width (depending on gaps)
-                    // Assuming centered snap, but scrolling ensures it's in view
-                    // Cards are min-w-[85vw].
-                    scrollRef.current.scrollTo({ left: width * 0.85, behavior: 'smooth' });
+                    let targetIndex = 1; // Default to Pro (index 1)
+
+                    if (initialTier === 'pick') targetIndex = 2; // GoldPick is index 2
+
+                    // 0.85 factor for card width logic used in handleScroll
+                    const scrollPos = targetIndex * (width * 0.85);
+
+                    scrollRef.current.scrollTo({ left: scrollPos, behavior: 'smooth' });
+                    setActiveSlide(targetIndex);
                 }
             }, 100);
         }
-    }, [isOpen]);
+    }, [isOpen, initialTier]);
 
     const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
         const scrollLeft = e.currentTarget.scrollLeft;

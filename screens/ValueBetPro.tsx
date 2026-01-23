@@ -308,43 +308,64 @@ export const ValueBetPro: React.FC = () => {
                                     No hay oportunidades para los filtros seleccionados.
                                     <br />Intenta con "Todas las Fechas".
                                 </div>
-                            ) : filteredPicks.map((pick, i) => {
-                                const unlocked = isUnlocked(pick.id, i);
-                                const mockOdds = pick.odds.toFixed(2);
-                                const edgeVal = pick.edge_percentage;
-                                let edgeColor = "text-[#8BA698]"; // Low: Sage Green/Gray
-                                let edgeGlow = "";
-
-                                if (edgeVal >= 8) {
-                                    edgeColor = "text-edge";
-                                    edgeGlow = "text-glow-edge";
-                                } else if (edgeVal >= 4) {
-                                    edgeColor = "text-edgeSoft";
-                                }
-
-                                return (
+                            ) : <>
+                                {!user && (
                                     <div
-                                        key={i}
-                                        onClick={() => handleCardClick(pick, i)}
-                                        className={`cursor-pointer transition-all duration-200 hover:scale-[1.02] ${!unlocked ? 'opacity-80' : ''}`}
+                                        onClick={() => navigate(Screen.Auth)}
+                                        className="hidden md:flex flex-col items-center justify-center py-24 bg-[#0B1220]/50 border border-[#1F2A44] rounded-xl text-center hover:bg-[#0B1220] transition-all cursor-pointer group"
                                     >
-                                        <div className="relative">
-                                            {/* Locked Overlay managed by parent if needed */}
-                                            {!unlocked && (
-                                                <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#0F1523]/90 backdrop-blur-md rounded-lg border border-[#1E293B]">
-                                                    <div className="p-3 bg-black/40 rounded-full mb-2 border border-[#4ADE80]/30 shadow-[0_0_15px_rgba(74,222,128,0.15)] animate-pulse">
-                                                        <span className="material-symbols-outlined text-[#4ADE80] text-2xl">lock</span>
-                                                    </div>
-                                                    <span className="text-[10px] font-black text-white uppercase tracking-widest mb-1">PRO ACCESS ONLY</span>
-                                                    <span className="text-[9px] font-mono text-gray-400">TAP TO REVEAL EDGE</span>
-                                                </div>
-                                            )}
-                                            <PickCard pick={pick} />
+                                        <div className="w-16 h-16 bg-[#0F1523] rounded-full flex items-center justify-center mb-6 shadow-lg border border-[#1E293B] group-hover:border-edge/50 group-hover:shadow-[0_0_20px_rgba(34,227,138,0.15)] transition-all">
+                                            <span className="material-symbols-outlined text-gray-500 group-hover:text-edge text-3xl transition-colors">lock</span>
                                         </div>
+                                        <h3 className="text-xl font-black text-white uppercase tracking-widest mb-2">Desktop Access Locked</h3>
+                                        <p className="text-xs font-mono text-gray-400 mb-8 max-w-sm leading-relaxed">
+                                            The professional terminal view is reserved for registered members.<br />
+                                            <span className="text-edge/80">Please log in to analyze edges.</span>
+                                        </p>
+                                        <button className="bg-edge text-black font-black text-[11px] px-8 py-3 rounded-sm uppercase tracking-wider hover:bg-white shadow-glow-sm transition-all transform group-hover:translate-y-[-2px]">
+                                            Login to Terminal
+                                        </button>
                                     </div>
-                                );
+                                )}
+                                <div className={`grid grid-cols-1 gap-3 ${!user ? 'md:hidden' : ''}`}>
+                                    {filteredPicks.map((pick, i) => {
+                                        const unlocked = isUnlocked(pick.id, i);
+                                        const mockOdds = pick.odds.toFixed(2);
+                                        const edgeVal = pick.edge_percentage;
+                                        let edgeColor = "text-[#8BA698]"; // Low: Sage Green/Gray
+                                        let edgeGlow = "";
 
-                            })}
+                                        if (edgeVal >= 8) {
+                                            edgeColor = "text-edge";
+                                            edgeGlow = "text-glow-edge";
+                                        } else if (edgeVal >= 4) {
+                                            edgeColor = "text-edgeSoft";
+                                        }
+
+                                        return (
+                                            <div
+                                                key={i}
+                                                onClick={() => handleCardClick(pick, i)}
+                                                className={`cursor-pointer transition-all duration-200 hover:scale-[1.02] ${!unlocked ? 'opacity-80' : ''}`}
+                                            >
+                                                <div className="relative">
+                                                    {/* Locked Overlay managed by parent if needed */}
+                                                    {!unlocked && (
+                                                        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-[#0F1523]/90 backdrop-blur-md rounded-lg border border-[#1E293B]">
+                                                            <div className="p-3 bg-black/40 rounded-full mb-2 border border-[#4ADE80]/30 shadow-[0_0_15px_rgba(74,222,128,0.15)] animate-pulse">
+                                                                <span className="material-symbols-outlined text-[#4ADE80] text-2xl">lock</span>
+                                                            </div>
+                                                            <span className="text-[10px] font-black text-white uppercase tracking-widest mb-1">PRO ACCESS ONLY</span>
+                                                            <span className="text-[9px] font-mono text-gray-400">TAP TO REVEAL EDGE</span>
+                                                        </div>
+                                                    )}
+                                                    <PickCard pick={pick} />
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </>}
                         </div>
                     </div>
                 </div>

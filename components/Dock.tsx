@@ -35,8 +35,19 @@ export const Dock: React.FC = () => {
         <aside className="w-full md:w-20 h-16 md:h-full bg-[#0F1216] border-t md:border-t-0 md:border-r border-border-dark flex flex-row md:flex-col items-center justify-between md:justify-start px-4 md:px-0 py-2 md:py-6 flex-shrink-0 z-50">
             <div className="hidden md:block mb-8 group relative cursor-pointer" onClick={() => !user && navigate(Screen.Auth)}>
                 {/* Logo or Auth Trigger (Desktop Only) */}
-                <div className="w-10 h-10 bg-primary/20 text-primary border border-primary rounded flex items-center justify-center font-black text-xs shadow-[0_0_15px_rgba(63,255,20,0.2)] group-hover:scale-105 transition-transform">
-                    {user ? user.email?.charAt(0).toUpperCase() : 'QB'}
+                <div className="w-10 h-10 bg-primary/20 text-primary border border-primary rounded flex items-center justify-center font-black text-xs shadow-[0_0_15px_rgba(63,255,20,0.2)] group-hover:scale-105 transition-transform overflow-hidden">
+                    {user ? (
+                        user.user_metadata?.avatar_url ? (
+                            <img src={user.user_metadata.avatar_url} alt="User" className="w-full h-full object-cover" />
+                        ) : (
+                            <span className="text-sm">{user.email?.slice(0, 2).toUpperCase()}</span>
+                        )
+                    ) : (
+                        <div className="flex flex-col items-center justify-center leading-none">
+                            <span className="text-[10px]">SE</span>
+                            <span className="text-[6px] opacity-70">EDGE</span>
+                        </div>
+                    )}
                 </div>
                 {!user && <div className="absolute left-14 top-2 bg-surface-light border border-border-dark text-xs px-2 py-1 rounded text-white opacity-0 group-hover:opacity-100 whitespace-nowrap z-50 pointer-events-none">Iniciar Sesión</div>}
             </div>

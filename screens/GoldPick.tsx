@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../services/supabaseClient';
+import { PaymentModal } from '../components/PaymentModal';
+import { SuccessModal } from '../components/SuccessModal';
 
 interface GoldPickData {
     match: string;
@@ -19,6 +21,8 @@ export const GoldPick: React.FC = () => {
     const [loading, setLoading] = useState(true);
     const [thinking, setThinking] = useState(false);
     const [toast, setToast] = useState<{ message: string; type?: 'info' | 'success' } | null>(null);
+    const [showPaymentModal, setShowPaymentModal] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
 
     useEffect(() => {
         fetchGoldPick();
@@ -55,12 +59,8 @@ export const GoldPick: React.FC = () => {
     };
 
     const handleUnlock = async () => {
-        setThinking(true);
-        // Simulate "Validating" delay for UX
-        setTimeout(() => {
-            setUnlocked(true);
-            setThinking(false);
-        }, 1500);
+        // Direct to payment flow
+        setShowPaymentModal(true);
     };
 
     // Derived values
@@ -223,6 +223,17 @@ export const GoldPick: React.FC = () => {
                     <span className="text-sm font-mono">{toast.message}</span>
                 </div>
             )}
+
+            <PaymentModal
+                isOpen={showPaymentModal}
+                onClose={() => setShowPaymentModal(false)}
+                initialTier="pick"
+                onSuccess={(tier) => {
+                    setShowSuccess(true);
+                    setUnlocked(true);
+                }}
+            />
+            <SuccessModal isOpen={showSuccess} onClose={() => setShowSuccess(false)} />
         </div>
     );
 };
