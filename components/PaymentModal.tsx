@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 interface PaymentModalProps {
     isOpen: boolean;
@@ -153,13 +154,22 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onS
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md px-4 py-6 md:p-4 overflow-y-auto">
             <div className="bg-[#0F1216] border border-surface-border rounded-2xl w-full max-w-[1200px] p-4 md:p-8 relative flex flex-col shadow-2xl my-auto md:h-auto">
-                <button onClick={onClose} className="absolute top-3 right-3 md:top-5 md:right-5 text-gray-400 hover:text-white transition-colors z-50 bg-black/80 rounded-full p-2 hover:bg-black border border-white/10 shadow-lg">
-                    <span className="material-symbols-outlined text-xl md:text-2xl">close</span>
-                </button>
+                {/* Header Row with Flexbox for alignment */}
+                <div className="flex items-start md:items-center justify-between mb-6 md:mb-8 shrink-0 relative z-10 w-full">
+                    {/* Spacer to balance the close button and keep title centered */}
+                    <div className="w-10 md:w-12 h-0"></div>
 
-                <div className="text-center mb-6 md:mb-8 shrink-0 relative z-10 w-full pr-12 md:pr-0 pl-12 md:pl-0">
-                    <h2 className="text-xl md:text-3xl font-black text-white tracking-tighter">PLANES PRO & GOLD PICKS</h2>
-                    <div className="h-1 w-16 md:w-24 bg-primary mx-auto mt-2 md:mt-3 rounded-full shadow-[0_0_15px_#3fff14]"></div>
+                    <div className="text-center flex-1 px-2">
+                        <h2 className="text-xl md:text-3xl font-black text-white tracking-tighter">PLANES PRO & GOLD PICKS</h2>
+                        <div className="h-1 w-16 md:w-24 bg-primary mx-auto mt-2 md:mt-3 rounded-full shadow-[0_0_15px_#3fff14]"></div>
+                    </div>
+
+                    <button
+                        onClick={onClose}
+                        className="text-gray-400 hover:text-white transition-colors bg-black/80 rounded-full p-2 hover:bg-black border border-white/10 shadow-lg flex-shrink-0"
+                    >
+                        <span className="material-symbols-outlined text-xl md:text-2xl">close</span>
+                    </button>
                 </div>
 
                 <div
@@ -213,13 +223,44 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onS
 
                         <div className="mt-auto border-t border-primary/20 pt-4">
                             <MethodSelector selected={proMethod} onSelect={setProMethod} colorClass="border-primary text-primary" />
-                            <button
-                                onClick={() => handlePurchase('pro', proMethod)}
-                                disabled={!!processing}
-                                className="w-full py-3 md:py-3.5 rounded bg-primary text-black font-black hover:bg-primary-dim transition-all shadow-glow hover:shadow-[0_0_20px_rgba(63,255,20,0.4)] text-xs tracking-wider border border-primary"
-                            >
-                                {processing?.startsWith('pro') ? 'PROCESANDO...' : `ACTIVAR PRO (${getPrice('pro', proMethod).label})`}
-                            </button>
+
+                            {proMethod === 'paypal' ? (
+                                <div className="w-full mt-2 relative z-0">
+                                    <PayPalScriptProvider options={{
+                                        "client-id": "AS4GGvkBSJRI9m5_ueVBUPidgDAsifs7cknsS3CzzmF0V7b0JgXnPPQn5TEmnhHFfe9FR84GjBJZRMHG",
+                                        vault: true,
+                                        intent: "subscription"
+                                    }}>
+                                        <PayPalButtons
+                                            style={{
+                                                shape: 'rect',
+                                                color: 'gold',
+                                                layout: 'vertical',
+                                                label: 'subscribe'
+                                            }}
+                                            createSubscription={(data, actions) => {
+                                                return actions.subscription.create({
+                                                    'plan_id': 'P-8VD112920G5791040NFZ2LHY' // Tu nuevo ID real
+                                                });
+                                            }}
+                                            onApprove={(data, actions) => {
+                                                // Esto es lo que pasa cuando pagan con éxito
+                                                console.log("Subscription ID:", data.subscriptionID);
+                                                alert("¡Bienvenido a StatsEdge PRO! Tu pago fue procesado.");
+                                                window.location.href = "/#/app"; // Redirigir a la app
+                                            }}
+                                        />
+                                    </PayPalScriptProvider>
+                                </div>
+                            ) : (
+                                <button
+                                    onClick={() => handlePurchase('pro', proMethod)}
+                                    disabled={!!processing}
+                                    className="w-full py-3 md:py-3.5 rounded bg-primary text-black font-black hover:bg-primary-dim transition-all shadow-glow hover:shadow-[0_0_20px_rgba(63,255,20,0.4)] text-xs tracking-wider border border-primary"
+                                >
+                                    {processing?.startsWith('pro') ? 'PROCESANDO...' : `ACTIVAR PRO (${getPrice('pro', proMethod).label})`}
+                                </button>
+                            )}
                             <div className="text-center mt-2 text-[9px] text-gray-500 font-mono">
                                 Cancela cuando quieras. Acceso inmediato.
                             </div>
